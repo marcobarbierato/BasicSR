@@ -92,6 +92,10 @@ class BaseModel():
             net (nn.Module)
         """
         net = net.to(self.device)
+        
+        if self.opt['compile'] is True:
+            net = torch.compile(net)
+            
         if self.opt['dist']:
             find_unused_parameters = self.opt.get('find_unused_parameters', False)
             net = DistributedDataParallel(
