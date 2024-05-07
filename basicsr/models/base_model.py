@@ -101,10 +101,13 @@ class BaseModel():
         return net
 
     def get_optimizer(self, optim_type, params, lr, **kwargs):
+        
         if optim_type == 'Adam':
             optimizer = torch.optim.Adam(params, lr, **kwargs)
         elif optim_type == 'AdamW':
             optimizer = torch.optim.AdamW(params, lr, **kwargs)
+        elif optim_type in {'NAdam', 'nadam'}:
+            optimizer = torch.optim.NAdam(params, lr, **kwargs)
         elif optim_type == 'Adamax':
             optimizer = torch.optim.Adamax(params, lr, **kwargs)
         elif optim_type == 'SGD':
