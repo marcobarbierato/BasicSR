@@ -68,6 +68,8 @@ class SRGANModel(SRModel):
         self.net_d_init_iters = train_opt.get('net_d_init_iters', 0)
         self.loss_g_sum = 0
         self.loss_d_sum = 0
+        self.loss_d_fake_sum=0
+        self.loss_d_real_sum=0
         # set up optimizers and schedulers
         self.setup_optimizers()
         self.setup_schedulers()
